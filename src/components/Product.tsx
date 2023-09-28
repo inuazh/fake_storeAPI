@@ -9,6 +9,12 @@ export function Product({ product }: ProductProps) {
 
     const[details, setDetails] = useState( false )
 
+    const btnBgClassName = details ? 'bg-blue-400' : 'bg-yellow-400'
+
+    const btnClasses = [
+        'border py-2 px-4', btnBgClassName
+    ]
+
 
 
     return (
@@ -21,10 +27,10 @@ export function Product({ product }: ProductProps) {
             {/* <p>{product.description}</p> */}
 
             <button
-             className="py-2 px-4 border bg-yellow-400"
+             className={btnClasses.join(' ')}
              onClick={() => setDetails(prev => !prev)}
              >
-                show details
+              { details ? 'hide details' : 'show details'}
                 
              </button>
 
@@ -33,6 +39,7 @@ export function Product({ product }: ProductProps) {
 
              {details && <div>
                 <p>{product.description}</p>
+                <p>Rate: <span style={{fontWeight: 'bold' }}>{product.rating.rate}</span></p>
              </div>}
         </div>
     )
